@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<!--[if IE 8]>               <html class="no-js lt-ie9" lang="ko" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ko" > <!--<![endif]-->
+
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+<title>정치성향 테스트 - Version 4.0</title>
+<link rel="stylesheet" href="css/foundation.css" />
+<script src="js/vendor/custom.modernizr.js"></script>
+<link rel="stylesheet" href="css/style.css" />
+
+</head>
+<body>
+
+<div class="notice panel"><strong>페이지 제작자의 한마디: </strong> 이 테스트는 객관적이지 않고 편향되어 보일 수 있습니다.</div>
+
+<header data-magellan-destination="intro" id="intro" class="row">
+<div class="large-12 columns">
+
+<h1>정치성향 테스트</h1>
+<p>Version 4.0</p>
+<p>당신의 정치성향을 알게 해줄 3지선택형 문항 80개가 준비되어 있습니다.<br>
+다음 질문을 보고 각 답변 중 한 가지를 선택해주세요. 문항은 총 80개이며 네 가지 분야 각각 20문항입니다.</p>
+
+<div class="panel">
+    <strong>6월 17일 (월) 수정사항</strong> 일부 주장을 어법에 맞게 고치고 논조를 수정했습니다. 이에 따라 이 테스트에는 <a href="http://blog.naver.com/rerinelf/140191251897">원본</a>과 다른 부분이 있을 수 있습니다.
+</div>
+
+<div id="top-nav" data-magellan-expedition="fixed">
+    <div class="row">
+      <dl class="sub-nav large-11 columns">
+        {% for p in parts %}
+        <dd data-magellan-arrival="part{{loop.index}}" class="part{{loop.index}}"><a href="#part{{loop.index}}">{{ p.title }}</a> <span class="round secondary label"></span></dd>
+        {% endfor %}
+      </dl>
+      <div class="large-1 columns see-result">
+        <button class="small button expand">결과 보기</button>
+      </div>
+    </div>
+</div>
+</div>
+</header>
+
+{% for p in parts %}
+    {% set partno = loop.index %}
+    <section data-magellan-destination="part{{partno}}" id="part{{partno}}" class="row">
+    <div class="large-12 columns">
+    <h2>{{ p.title }}</h2>
+    {% for q in p.questions %}
+        {% set qno = loop.index %}
+        <h3 class="subheader">논점 {{qno}}</h3>
+        <div class="row">
+        <div class="large-8 columns">
+            <p>주장 1. {{q.a}}</p>
+            <p>주장 2. {{q.b}}</p>
+        <form class="custom">
+        <label for="p{{partno}}-q{{qno}}-a"><input name="p{{partno}}-q{{qno}}" type="radio" id="p{{partno}}-q{{qno}}-a" value="a" style="display:none;"><span class="custom radio"></span> 1번 적극 동의</label>
+        <label for="p{{partno}}-q{{qno}}-halfa"><input name="p{{partno}}-q{{qno}}" type="radio" id="p{{partno}}-q{{qno}}-halfa" value="0.5a" style="display:none;"><span class="custom radio"></span> 1번 약간 동의</label>
+        <label for="p{{partno}}-q{{qno}}-n"><input name="p{{partno}}-q{{qno}}" type="radio" id="p{{partno}}-q{{qno}}-n" value="0" style="display:none;"><span class="custom radio"></span> 잘 모르겠다.</label>
+        <label for="p{{partno}}-q{{qno}}-halfb"><input name="p{{partno}}-q{{qno}}" type="radio" id="p{{partno}}-q{{qno}}-halfb" value="0.5b" style="display:none;"><span class="custom radio"></span> 2번 약간 동의</label>
+        <label for="p{{partno}}-q{{qno}}-b"><input name="p{{partno}}-q{{qno}}" type="radio" id="p{{partno}}-q{{qno}}-b" value="b" style="display:none;"><span class="custom radio"></span> 2번 적극 동의</label>
+        </form>
+        </div>
+        {% if q.dl %}
+        <dl class="large-4 columns">
+            {% for d in q.dl %}
+            <dt>{{ d.dt }}</dt>
+            <dd>{{ d.dd }}</dd>
+            {% endfor %}
+        </dl>
+        {% endif %}
+        </div>
+    {% endfor %}
+    </div>
+    </section>
+{% endfor %}
+
+<section class="row see-result">
+<div class="large-12 columns">
+    <h3 class="subheader">수고하셨습니다! 결과를 보시려면 아래에 있는 버튼을 누르세요.</h3>
+    <form action="result.html" method="get">
+    <input type="hidden" name="ul" value="" />
+    <input type="hidden" name="ur" value="" />
+    <input type="hidden" name="ll" value="" />
+    <input type="hidden" name="lr" value="" />
+    <input type="submit" disabled="disabled" class="large button expand" value="결과 보기" />
+    </form>
+    <p>테스트를 이용하실 때 불편하신 점이 있으신가요? <a href="http://blog.naver.com/cylussss/10170428069">여기</a>에 의견을 남겨주세요.</p>
+</div>
+</section>
+
+<footer class="row">
+<section>
+<div class="large-4 columns">
+<p>원저작자: 비야르레알 (<a href="http://blog.naver.com/rerinelf/140191251897">원문</a>)<br>
+   페이지 제작자: cyluss (<a href="http://blog.naver.com/cylussss">블로그</a>)</p>
+<p>이 페이지는 인터넷 익스플로러 9 이상이나 사파리, 크롬에서 잘 보입니다.</p>
+</div>
+<dl id="license" class="large-8 columns">
+<dt>저작자표시-비영리-동일조건변경허락</dt>
+<dd>이 라이선스는 원저작물의 저작자를 밝히고 2차 저작물에도 동일한 라이선스를 적용하는 한, 저작물을 비상업적 용도로 리믹스, 변형, 활용할 수 있도록 허락합니다.<br>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">자세히 읽기</a><br></dd>
+<dd><img src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" alt="CC BY-NC-SA" /></dd>
+</dl>
+</section>
+
+
+<section>
+<div class="large-6 columns">
+정치성향 테스트 Version 4.0
+</div>
+
+<div class="large-6 columns powered-by">
+<ul class="inline-list">
+<li class="header">powered by:</li>
+<li><a href="https://github.com">GitHub</a></li>
+<li><a href="http://foundation.zurb.com">Foundation</a></li>
+<li><a href="http://d3js.org">D3</a></li>
+</ul>
+</div>
+</section>
+</footer>
+
+<script>
+document.write('<script src=' +
+('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
+'.js><\/script>')
+</script>
+<script src="js/foundation.min.js"></script>
+<script src="js/underscore/underscore-min.js" charset="utf-8"></script>
+<script>
+$(document).foundation();
+
+function agg_questions(partno, value) {
+    return _.filter($("#part"+partno+" input[type='radio'][value='"+value+"']"), function(e) { return e.checked; }).length;
+}
+
+function set_count(node, cnt) {
+    if (cnt === 0) {
+        node.removeClass("secondary");
+        node.addClass("success");
+    } else {
+        node.addClass("secondary");
+        node.removeClass("success");
+    }
+    node.text(cnt);
+}
+
+function refresh() {
+    var a_a = agg_questions(1, 'a');
+    var a_halfa = agg_questions(1, '0.5a');
+    var a_no = agg_questions(1, 0);
+    var a_halfb = agg_questions(1, '0.5b');
+    var a_b = agg_questions(1, 'b');
+
+
+    var a_cnt = a_a + a_halfa + a_no + a_halfb + a_b;
+
+    var b_a = agg_questions(2, 'a');
+    var b_halfa = agg_questions(2, '0.5a');
+    var b_no = agg_questions(2, 0);
+    var b_halfb = agg_questions(2, '0.5b');
+    var b_b = agg_questions(2, 'b');
+
+
+    var b_cnt = b_a + b_halfa + b_no + b_halfb + b_b;
+
+    var c_a = agg_questions(3, 'a');
+    var c_halfa = agg_questions(3, '0.5a');
+    var c_no = agg_questions(3, 0);
+    var c_halfb = agg_questions(3, '0.5b');
+    var c_b = agg_questions(3, 'b');
+
+
+    var c_cnt = c_a + c_halfa + c_no + c_halfb + c_b;
+
+    var d_a = agg_questions(4, 'a');
+    var d_halfa = agg_questions(4, '0.5a');
+    var d_no = agg_questions(4, 0);
+    var d_halfb = agg_questions(4, '0.5b');
+    var d_b = agg_questions(4, 'b');
+
+
+    var d_cnt = d_a + d_halfa + d_no + d_halfb + d_b;
+
+
+    function ul() {
+        return JSON.stringify([-(a_a + 0.5*a_halfa), (c_a + 0.5*c_halfa)]);
+    }
+
+    function ur() {
+        return JSON.stringify([(a_b + 0.5 *a_halfb), (b_a + 0.5 * b_halfa)]);
+    }
+
+    function ll() {
+        return JSON.stringify([-(d_a + 0.5*d_halfa), -(c_b + 0.5*c_halfb)]);
+    }
+
+    function lr() {
+        return JSON.stringify([(d_b + 0.5*d_halfb), -(b_b + 0.5*b_halfb)]);
+    }
+
+    function answeredCount() {
+        return a_cnt + b_cnt + c_cnt + d_cnt;
+    }
+
+    function refreshResultButton(button) {
+        button.attr("disabled", (answeredCount() === 80 ? null : "disabled"));
+    }
+
+    function refreshForm() {
+        function stripAndSet(target, value) {
+            return target.attr('value', value.substring(1, value.length-1));
+        }
+        stripAndSet($(".see-result form input[type='hidden'][name='ul']"), ul());
+        stripAndSet($(".see-result form input[type='hidden'][name='ur']"), ur());
+        stripAndSet($(".see-result form input[type='hidden'][name='ll']"), ll());
+        stripAndSet($(".see-result form input[type='hidden'][name='lr']"), lr());
+    }
+
+    refreshResultButton($(".see-result button, .see-result input[type='submit']"));
+    refreshForm();
+
+    set_count($("#top-nav .part1 span"), 20 - a_cnt);
+    set_count($("#top-nav .part2 span"), 20 - b_cnt);
+    set_count($("#top-nav .part3 span"), 20 - c_cnt);
+    set_count($("#top-nav .part4 span"), 20 - d_cnt);
+}
+
+$("input[type='radio']").change(refresh);
+refresh();
+
+$(".see-result button").click(function () {
+    $(".see-result form").submit();
+});
+
+setTimeout(function () {
+$(".notice").fadeOut(500);
+}, 10000);
+
+
+</script>
+</body>
+</html>
+

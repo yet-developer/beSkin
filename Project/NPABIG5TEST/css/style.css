@@ -1,0 +1,62 @@
+* {
+    font-family: Helvetica, Arial, AppleGothic, 'Malgun Gothic', sans-serif !important;
+}
+
+body {
+    font-size: 0.95em;
+    line-height: 161%;
+    background: url(../img/wavegrid.png);
+}
+
+body > .row {
+    background: white;
+    box-shadow: 0px 0px 15px -9px #333;
+    padding: 1em 2em;
+}
+
+@media only screen and (min-width: 768px) {
+    body > .row {
+        padding: 3em 6em;
+    }
+}
+
+.sub-nav.large-11 {
+    width: 91.66667%; !important;
+}
+
+.sub-nav dd {
+    margin: 0 1.0em;
+}
+
+.sub-nav {
+    margin-bottom: 1em !important;
+}
+
+.powered-by {
+    text-align: right;
+}
+
+.powered-by ul {
+    float: right !important;
+}
+
+#graph-placeholder svg {
+    display: block;
+    width: 800px;
+    margin: 0 auto;
+}
+
+.notice {
+    text-align: center;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #ccc;
+}
+
+.axis text {
+    font-family: sans-serif;
+    font-size: 0.8em;
+}
