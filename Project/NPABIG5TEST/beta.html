@@ -17,9 +17,6 @@
     <div class="large-12 columns">
         <H1 >Newcastle Personality Assessor Big5 성격 검사</H1>
             <p>심리학에서 신뢰되고 있는 Big5 이론에 기반하여 작성된 NPA(Newcastle Personality Assessor)는 복사하여 사용할 수 있습니다.</p>
-        <dl class="sub-nav large-12 columns">
-            <dd data-magellan-arrival="part1" class="test"><a href="#test">﻿NPA 성격 검사</a> <span class="round secondary label"></span></dd>
-        </dl>
     </div>
   </header>
     </div>
@@ -135,26 +132,15 @@
     <input type="hidden" name="ur" value="" />
     <input type="hidden" name="ll" value="" />
     <input type="hidden" name="lr" value="" />
-    <input type="submit" disabled="disabled" class="large button expand" value="결과 보기" />
+    <input type="submit"  class="large button expand" value="결과 보기" />
     </form>
     <p>테스트를 이용하실 때 불편하신 점이 있으신가요? <a href="http://blog.naver.com/cylussss/10170428069">여기</a>에 의견을 남겨주세요.</p>
 </div>
 </section>
 
 <footer class="row">
-<section>
-<div class="large-4 columns">
-<p>원저작자: 비야르레알 (<a href="http://blog.naver.com/rerinelf/140191251897">원문</a>)<br>
-   페이지 제작자: cyluss (<a href="http://blog.naver.com/cylussss">블로그</a>)</p>
-<p>이 페이지는 인터넷 익스플로러 9 이상이나 사파리, 크롬에서 잘 보입니다.</p>
-</div>
-<dl id="license" class="large-8 columns">
-<dt>저작자표시-비영리-동일조건변경허락</dt>
-<dd>이 라이선스는 원저작물의 저작자를 밝히고 2차 저작물에도 동일한 라이선스를 적용하는 한, 저작물을 비상업적 용도로 리믹스, 변형, 활용할 수 있도록 허락합니다.<br>
-    <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">자세히 읽기</a><br></dd>
-<dd><img src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" alt="CC BY-NC-SA" /></dd>
-</dl>
-</section>
+</footer>
+
 
 
 <script>
@@ -162,130 +148,7 @@ document.write('<script src=' +
 ('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
 '.js><\/script>')
 </script>
-<script src="js/foundation.min.js"></script>
-<script src="js/underscore/underscore-min.js" charset="utf-8"></script>
-<script>
-$(document).foundation();
-
- function agg_questions(partno, value) {
-    return _.filter($("#part"+partno+" input[type='radio'][value='"+value+"']"), function(e) { return e.checked; }).length;
-} 
-
-function set_count(node, cnt) {
-    if (cnt === 0) {
-        node.removeClass("secondary");
-        node.addClass("success");
-    } else {
-        node.addClass("secondary");
-        node.removeClass("success");
-    }
-    node.text(cnt);
-}
-
-function refresh() {
-    var a_a = agg_questions(1, 'a');
-    var a_halfa = agg_questions(1, '0.5a');
-    var a_no = agg_questions(1, 0);
-    var a_halfb = agg_questions(1, '0.5b');
-    var a_b = agg_questions(1, 'b');
-
-
-    var a_cnt = a_a + a_halfa + a_no + a_halfb + a_b;
-
-    var b_a = agg_questions(2, 'a');
-    var b_halfa = agg_questions(2, '0.5a');
-    var b_no = agg_questions(2, 0);
-    var b_halfb = agg_questions(2, '0.5b');
-    var b_b = agg_questions(2, 'b');
-
-
-    var b_cnt = b_a + b_halfa + b_no + b_halfb + b_b;
-
-    var c_a = agg_questions(3, 'a');
-    var c_halfa = agg_questions(3, '0.5a');
-    var c_no = agg_questions(3, 0);
-    var c_halfb = agg_questions(3, '0.5b');
-    var c_b = agg_questions(3, 'b');
-
-
-    var c_cnt = c_a + c_halfa + c_no + c_halfb + c_b;
-
-    var d_a = agg_questions(4, 'a');
-    var d_halfa = agg_questions(4, '0.5a');
-    var d_no = agg_questions(4, 0);
-    var d_halfb = agg_questions(4, '0.5b');
-    var d_b = agg_questions(4, 'b');
-
-
-    var d_cnt = d_a + d_halfa + d_no + d_halfb + d_b;
-
-
-    function ul() {
-        return JSON.stringify([-(a_a + 0.5*a_halfa), (c_a + 0.5*c_halfa)]);
-    }
-
-    function ur() {
-        return JSON.stringify([(a_b + 0.5 *a_halfb), (b_a + 0.5 * b_halfa)]);
-    }
-
-    function ll() {
-        return JSON.stringify([-(d_a + 0.5*d_halfa), -(c_b + 0.5*c_halfb)]);
-    }
-
-    function lr() {
-        return JSON.stringify([(d_b + 0.5*d_halfb), -(b_b + 0.5*b_halfb)]);
-    }
-
-    function answeredCount() {
-        return a_cnt + b_cnt + c_cnt + d_cnt;
-    }
-
-    function refreshResultButton(button) {
-        button.attr("disabled", (answeredCount() === 80 ? null : "disabled"));
-    }
-
-    function refreshForm() {
-        function stripAndSet(target, value) {
-            return target.attr('value', value.substring(1, value.length-1));
-        }
-        stripAndSet($(".see-result form input[type='hidden'][name='ul']"), ul());
-        stripAndSet($(".see-result form input[type='hidden'][name='ur']"), ur());
-        stripAndSet($(".see-result form input[type='hidden'][name='ll']"), ll());
-        stripAndSet($(".see-result form input[type='hidden'][name='lr']"), lr());
-    }
-
-    refreshResultButton($(".see-result button, .see-result input[type='submit']"));
-    refreshForm();
-
-    set_count($("#top-nav .part1 span"), 20 - a_cnt);
-    set_count($("#top-nav .part2 span"), 20 - b_cnt);
-    set_count($("#top-nav .part3 span"), 20 - c_cnt);
-    set_count($("#top-nav .part4 span"), 20 - d_cnt);
-}
-
-$("input[type='radio']").change(refresh);
-refresh();
-
-$(".see-result button").click(function () {
-    $(".see-result form").submit();
-});
-
-setTimeout(function () {
-$(".notice").fadeOut(500);
-}, 10000);
-
-
-</script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-68383480-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
+<
 </body>
 </html>
 
